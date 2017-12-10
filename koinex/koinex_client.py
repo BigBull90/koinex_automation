@@ -23,7 +23,7 @@ class KoinexClient:
             result = dict()
             price = reply.json().get('prices')
             for key in self.config['coins']:
-                print("Koinex Price for {} is {}".format(key, price.get(key)))
+                print("Koinex Price for {} : {} INR".format(key, price.get(key)))
                 result[key] = float(price.get(key))
         return result
 

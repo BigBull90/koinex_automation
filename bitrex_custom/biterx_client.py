@@ -31,10 +31,10 @@ class BittrexClient:
             btc_volume_dict = self._parse_result(btc_volume_dict)
             # for header, value in btc_volume_dict.items():
             #     print("{x} {y}".format(x=header, y=value))
-            if btc_volume_dict.get('Available'):
-                print('Available {0:} in your account is {1:0.10f}'.format(coin, btc_volume_dict.get('Available')))
-            else:
-                print('Available {0:} in your account is {1:}'.format(coin, btc_volume_dict.get('Available')))
+            # if btc_volume_dict.get('Available'):
+            #     print('Available {0:} in your account is {1:0.10f}'.format(coin, btc_volume_dict.get('Available')))
+            # else:
+            #     print('Available {0:} in your account is {1:}'.format(coin, btc_volume_dict.get('Available')))
 
     def get_current_market(self) -> dict:
         markets = self.config['monitor_markets']
@@ -52,7 +52,7 @@ class BittrexClient:
         market_value = self._parse_result(market_value)
         ask_value = market_value[0].get('Last')
         market_name = market_value[0].get('MarketName')
-        print("Last Traded value of {0:} is {1:0.10f}".format(market_name, ask_value))
+        print("Last Traded value of {0:} : {1:0.10f} BTC".format(market_name, ask_value))
         result[market_name] = ask_value
         return market_name, ask_value
 

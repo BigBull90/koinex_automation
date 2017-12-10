@@ -7,7 +7,7 @@ float_format = '0.10f'
 
 CONFIG_BITCOIN = {
     "bitcoin_buy_price": None,
-    "invested_amount": None
+    "invested_amount": 600000
 }
 
 
