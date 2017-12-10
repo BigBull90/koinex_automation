@@ -23,7 +23,7 @@ class ProfitRun:
         for coin in stats_dict:
             max_value = stats_dict.get(coin).get('max_24hrs')
             min_value = stats_dict.get(coin).get('min_24hrs')
-            avg_value = (min_value + max_value) / 2
+            avg_value = (float(min_value)+ float(max_value)) / 2
             print("{coin_name}:".format(coin_name=coin) +
                   " 24-Highest: {highest},".format(highest=max_value) +
                   " 24-Lowest: {lowest},".format(lowest=min_value) +
