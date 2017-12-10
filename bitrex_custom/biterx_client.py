@@ -18,10 +18,10 @@ class BittrexConfig(Enum):
 
 
 class BittrexClient:
-    def __init__(self, config: BittrexConfig):
+    def __init__(self, config: BittrexConfig) -> None:
         self.config = config.value
-        self.bitrex_client = Bittrex(api_key='e89bdfda454946c38d31640c16c5f3ba',
-                                     api_secret='82ae01deaa934d9a9d164678718fbd25')
+        self.bitrex_client = Bittrex(api_key="XXXXXXXXXXXXXX",
+                                     api_secret="XXXXXXXXXXXXX")
 
     def get_available_coin_volume(self) -> None:
         coins = self.config['available_coins']
@@ -46,7 +46,7 @@ class BittrexClient:
             result.update({market_name: ask_value})
         return result
 
-    def get_market(self, market) -> tuple:
+    def get_market(self, market: str) -> tuple:
         result = dict()
         market_value = self.bitrex_client.get_marketsummary(market=market)
         market_value = self._parse_result(market_value)
@@ -65,4 +65,3 @@ class BittrexClient:
 
 if __name__ == '__main__':
     bitrex_client = BittrexClient(BittrexConfig.VALUE)
-    bitrex_client.get_bitcoin_price()

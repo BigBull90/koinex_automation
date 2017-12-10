@@ -3,7 +3,6 @@
 # purpose: Koinex platform client
 from enum import Enum
 import requests
-# from utils import print
 
 
 class KoinexConfig(Enum):
@@ -26,6 +25,17 @@ class KoinexClient:
             for key in self.config['coins']:
                 print("Koinex Price for {} is {}".format(key, price.get(key)))
                 result[key] = float(price.get(key))
+        return result
+
+    def get_market_stats(self) -> dict:
+        reply = requests.get('https://koinex.in/api/ticker')
+        if reply.status_code != 200:
+            raise Exception("Cannot connect to Koinex Ticker API - Check internet connection")
+        else:
+            result = dict()
+            stats = reply.json().get('stats')
+            for key in self.config['coins']:
+                result[key] = stats.get(key)
         return result
 
 
