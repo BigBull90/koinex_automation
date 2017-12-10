@@ -21,11 +21,13 @@ class ProfitRun:
         logger("################ Koinex Statastics #################")
         stats_dict = self.koinex_client.get_market_stats()
         for coin in stats_dict:
+            max_value = stats_dict.get(coin).get('max_24hrs')
+            min_value = stats_dict.get(coin).get('min_24hrs')
+            avg_value = (min_value + max_value) / 2
             print("{coin_name}:".format(coin_name=coin) +
-                  " 24-Highest: {highest},".format(highest=stats_dict.get(coin).get('min_24hrs')) +
-                  " 24-Lowest: {lowest},".format(lowest=stats_dict.get(coin).get('max_24hrs')) +
-                  " Lowest ask: {lowest_ask},".format(lowest_ask=stats_dict.get(coin).get('lowest_ask')) +
-                  " Highest bid: {highest_bid}".format(highest_bid=stats_dict.get(coin).get('highest_bid'))
+                  " 24-Highest: {highest},".format(highest=max_value) +
+                  " 24-Lowest: {lowest},".format(lowest=min_value) +
+                  "Average price: {average}".format(average=avg_value)
                   )
 
     def run_program(self) -> None:
